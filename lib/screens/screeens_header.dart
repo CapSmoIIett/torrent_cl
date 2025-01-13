@@ -1,0 +1,2 @@
+
+enum Screens {Home, Settings}
