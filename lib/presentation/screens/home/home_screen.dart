@@ -2,7 +2,8 @@ import 'package:auto_route/annotations.dart';
 import 'package:auto_route/auto_route.dart';
 import 'package:flutter/material.dart';
 import 'package:torrent_cl/presentation/navigation/screen_router.dart';
-
+import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:intl/intl.dart';
 
 @RoutePage()
 class HomeScreen extends StatelessWidget {
@@ -17,14 +18,13 @@ class HomeScreen extends StatelessWidget {
         SettingsRoute(),
         LogsRoute(),
       ],
-
       builder: (context, child) {
         final controller = AutoTabsRouter.of(context);
 
         final tabs = {
           TrackerListRoute.name: 0,
-          SettingsRoute.name:    1,
-          LogsRoute.name:        2, 
+          SettingsRoute.name: 1,
+          LogsRoute.name: 2,
         };
 
         return Scaffold(
@@ -46,26 +46,27 @@ class HomeScreen extends StatelessWidget {
               padding: EdgeInsets.zero,
               children: [
                 const DrawerHeader(
-                    decoration: BoxDecoration(
-                      color: Colors.deepPurple,
-                    ),
-                    child: Center(
-                      child: Text('Torrent'),
-                    )),
+                  decoration: BoxDecoration(
+                    color: Colors.deepPurple,
+                  ),
+                  child: Center(
+                    child: Text('Torrent'),
+                  ),
+                ),
                 ListTile(
-                  title: const Text('Home'),
+                  title: Text(Intl.message('Home')),
                   onTap: () {
                     controller.setActiveIndex(tabs[TrackerListRoute.name]!);
                   },
                 ),
                 ListTile(
-                  title: const Text('Settings'),
+                  title: Text(Intl.message('Settings')),
                   onTap: () {
                     controller.setActiveIndex(tabs[SettingsRoute.name]!);
                   },
                 ),
                 ListTile(
-                  title: const Text('Logs'),
+                  title: Text(Intl.message('Logs')),
                   onTap: () {
                     controller.setActiveIndex(tabs[LogsRoute.name]!);
                   },
