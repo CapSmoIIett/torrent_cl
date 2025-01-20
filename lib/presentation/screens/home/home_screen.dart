@@ -29,7 +29,18 @@ class HomeScreen extends StatelessWidget {
 
         return Scaffold(
           appBar: AppBar(
-            title: Text('appbar'),
+            centerTitle: true,
+            title: _calculateTitle(controller.activeIndex),
+            actions: [
+              // IconButton(
+              //   icon: const Icon(Icons.search),
+              //   onPressed: () {
+              //   },
+              // )
+              //switch (controller.activeIndex){
+              //case 0:
+              //}
+            ],
             leading: Builder(
               builder: (context) {
                 return IconButton(
@@ -80,3 +91,32 @@ class HomeScreen extends StatelessWidget {
     );
   }
 }
+
+Widget _calculateTitle(int index) {
+  if (index == 1 || index == 2 || index == 3) {
+    return SearchWidget();
+  }
+  return Text('appbar');
+}
+
+class SearchWidget extends StatelessWidget {
+  const SearchWidget({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    final size = MediaQuery.sizeOf(context);
+    return Row(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+       SizedBox(
+              width: size.width * 0.7,
+              child: TextField(
+              decoration: InputDecoration(hintText: 'Search'),
+            ),
+        ),
+        Icon(Icons.search),
+      ],
+    );
+  }
+}
+
